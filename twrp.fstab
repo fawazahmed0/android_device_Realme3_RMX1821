@@ -1,0 +1,57 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# mount point  fstype    device                                                           flags
+/boot          emmc    /dev/block/platform/bootdevice/by-name/boot                        flags=backup=1
+/cache         ext4    /dev/block/platform/bootdevice/by-name/cache                       flags=wipeduringfactoryreset;backup=1;wipeingui
+/recovery      emmc    /dev/block/platform/bootdevice/by-name/recovery                    flags=backup=1
+/system        ext4    /dev/block/platform/bootdevice/by-name/system                      flags=backup=1
+/system_image  emmc    /dev/block/platform/bootdevice/by-name/system                      flags=backup=0;flashimg=1
+/vendor        ext4    /dev/block/platform/bootdevice/by-name/vendor                      flags=backup=1
+/vendor_image  emmc    /dev/block/platform/bootdevice/by-name/vendor                      flags=backup=0;flashimg=1
+/data          ext4    /dev/block/platform/bootdevice/by-name/userdata                flags=encryptable=footer;fileencryption=aes-256-xts;wipeduringfactoryreset;backup=1;wipeingui
+/boot_para     emmc    /dev/block/platform/bootdevice/by-name/boot_para                        flags=backup=1
+/cam_vpu1      emmc    /dev/block/platform/bootdevice/by-name/cam_vpu1                        flags=backup=1
+/cam_vpu2      emmc    /dev/block/platform/bootdevice/by-name/cam_vpu2                       flags=backup=1
+/cam_vpu3      emmc    /dev/block/platform/bootdevice/by-name/cam_vpu3                        flags=backup=1
+/dtbo          emmc    /dev/block/platform/bootdevice/by-name/dtbo                       flags=backup=1
+/expdb         emmc    /dev/block/platform/bootdevice/by-name/expdb                        flags=backup=1
+/flashinfo     emmc    /dev/block/platform/bootdevice/by-name/flashinfo                       flags=backup=1
+/frp           emmc    /dev/block/platform/bootdevice/by-name/frp                        flags=backup=1
+/gz1           emmc    /dev/block/platform/bootdevice/by-name/gz1                        flags=backup=1
+/gz2           emmc    /dev/block/platform/bootdevice/by-name/gz2                     flags=backup=1
+/lk            emmc    /dev/block/platform/bootdevice/by-name/lk                      flags=backup=1
+/lk2           emmc    /dev/block/platform/bootdevice/by-name/lk2                       flags=backup=1
+/logo          emmc    /dev/block/platform/bootdevice/by-name/logo                       flags=backup=1
+/md1img        emmc    /dev/block/platform/bootdevice/by-name/md1img                      flags=backup=1
+/metadata      emmc    /dev/block/platform/bootdevice/by-name/metadata                        flags=backup=1
+/nvcfg         ext4    /dev/block/platform/bootdevice/by-name/nvcfg                     flags=backup=1
+/nvdata        ext4    /dev/block/platform/bootdevice/by-name/nvdata                        flags=backup=1
+/nvram         emmc    /dev/block/platform/bootdevice/by-name/nvram                       flags=backup=1
+/odm           ext4    /dev/block/platform/bootdevice/by-name/odm                      flags=backup=1
+/oppo_custom   emmc    /dev/block/platform/bootdevice/by-name/oppo_custom                       flags=backup=1
+/opporeserve1  emmc    /dev/block/platform/bootdevice/by-name/opporeserve1                     flags=backup=1
+/opporeserve2  emmc    /dev/block/platform/bootdevice/by-name/opporeserve2                      flags=backup=1
+/opporeserve3  emmc    /dev/block/platform/bootdevice/by-name/opporeserve3                        flags=backup=1
+/otp           emmc    /dev/block/platform/bootdevice/by-name/otp                    flags=backup=1
+/para          emmc    /dev/block/platform/bootdevice/by-name/para                     flags=backup=1
+/persist       ext4    /dev/block/platform/bootdevice/by-name/persist                       flags=backup=1
+/preloader_a   emmc    /dev/block/mmcblk0boot0                                              flags=backup=1
+/preloader_b   emmc    /dev/block/mmcblk0boot1                                              flags=backup=1
+/proinfo       emmc    /dev/block/platform/bootdevice/by-name/proinfo                        flags=backup=1
+/protect1      ext4    /dev/block/platform/bootdevice/by-name/protect1                        flags=backup=1
+/protect2      ext4    /dev/block/platform/bootdevice/by-name/protect2                        flags=backup=1
+/scp1          emmc    /dev/block/platform/bootdevice/by-name/scp1                        flags=backup=1
+/scp2          emmc    /dev/block/platform/bootdevice/by-name/scp2                        flags=backup=1
+/sec1          emmc    /dev/block/platform/bootdevice/by-name/sec1                        flags=backup=1
+/seccfg        emmc    /dev/block/platform/bootdevice/by-name/seccfg                        flags=backup=1
+/spmfw         emmc    /dev/block/platform/bootdevice/by-name/spmfw                        flags=backup=1
+/sspm_1        emmc    /dev/block/platform/bootdevice/by-name/sspm_1                        flags=backup=1
+/sspm_2        emmc    /dev/block/platform/bootdevice/by-name/sspm_2                        flags=backup=1
+/tee1          emmc    /dev/block/platform/bootdevice/by-name/tee1                        flags=backup=1
+/tee2          emmc    /dev/block/platform/bootdevice/by-name/tee2                        flags=backup=1
+
+# Removable storage
+/external_sd   auto    /dev/block/mmcblk1p1   /dev/block/mmcblk1     flags=display="External SDcard";storage;wipeingui;removable;backup=0
+/usbotg        auto    /dev/block/sda1        /dev/block/sda         flags=display="usb-otg";storage;removable;wipeingui;backup=0
