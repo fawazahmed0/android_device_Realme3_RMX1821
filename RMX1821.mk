@@ -18,13 +18,3 @@ PRODUCT_BRAND := Realme
 PRODUCT_MODEL := RMX1821
 PRODUCT_MANUFACTURER := Realme
 
-# enable stock zip packages flash
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.treble.enabled=true \
-    persist.sys.usb.config=mtp \
-    persist.service.adb.enable=1 \
-    persist.service.debuggable=1 \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
-    ro.allow.mock.location=0
