@@ -12,6 +12,7 @@ on init
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
     mkdir /config/usb_gadget/g1/functions/ffs.adb
     setprop sys.usb.ffs.aio_compat 1
+    symlink /dev/block/platform/bootdevice /dev/block/bootdevice
     export ANDROID_ROOT /system_root
 
 on property:ro.debuggable=0
