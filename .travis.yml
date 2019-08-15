@@ -1,0 +1,30 @@
+sudo: required
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install git repo ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev python openjdk-8-jdk android-tools-adb
+before_script:
+- git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed"
+- mkdir $HOME/twrp && cd $HOME/twrp
+- repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+- repo sync
+- git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
+- git clone https://github.com/TeamWin/external_magisk-prebuilt.git $HOME/twrp/external/magisk-prebuilt
+script:
+  - cd $HOME/twrp/external/magisk-prebuilt && git pull
+  - cd $HOME/twrp/device/Realme/RMX1821 && git pull
+  - cd $HOME/twrp && repo sync
+  - export ALLOW_MISSING_DEPENDENCIES=true && source ./build/envsetup.sh && lunch RMX1821-eng && mka recoveryimage
+after_success:
+  - export version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d '"' -f2)
+  - cp $HOME/twrp/out/target/product/RMX1821/recovery.img $HOME/twrp/TWRP-$version-RMX1821-$(date +"%Y%m%d").img
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key: "$GH_TOKEN"
+  file_glob: true
+  file: $HOME/twrp/*.img
+  on:
+    tags: false
+    repo: fawazahmed0/android_device_Realme3_RMX1821
+    branch: master
+
