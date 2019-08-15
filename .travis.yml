@@ -2,6 +2,7 @@ sudo: required
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install git repo ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev python openjdk-8-jdk android-tools-adb
+install: travis_wait 60 mvn install
 before_script:
 - git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed"
 - mkdir $HOME/twrp && cd $HOME/twrp
