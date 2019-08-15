@@ -8,8 +8,9 @@ before_script:
 - repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
 - travis_wait 60 repo sync -q
 - git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
+- git clone https://github.com/omnirom/android_external_jpeg.git $HOME/twrp/external/jpeg
 script:
-  - cd $HOME/twrp/device/Realme/RMX1821 && git pull
+  - cd $HOME/twrp/device/Realme/RMX1821 && git pull && cd $HOME/twrp/external/jpeg && git pull
   - cd $HOME/twrp && travis_wait 60 repo sync -q
   - export ALLOW_MISSING_DEPENDENCIES=true && source ./build/envsetup.sh && lunch RMX1821-eng && mka recoveryimage
 after_success:
