@@ -2,6 +2,7 @@ security.perf_harden=0
 persist.service.adb.enable=1 
 persist.service.debuggable=1 
 persist.sys.usb.config=mtp,adb
+ro.mtk_emmc_support=1
 ro.allow.mock.location=1
 ro.adb.secure=0
 ro.secure=0
