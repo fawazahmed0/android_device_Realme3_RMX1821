@@ -15,6 +15,11 @@ script:
   - sed -i 's/PWD=\/proc\/self\/cwd//g' $HOME/twrp/build/make/core/config.mk && sed -i 's/PWD=\/proc\/self\/cwd//g' $HOME/twrp/build/soong/cc/builder.go
   - cd $HOME/twrp && export ALLOW_MISSING_DEPENDENCIES=true && source ./build/envsetup.sh && lunch RMX1821-eng
   - mka recoveryimage
+cache:
+  directories:
+    - $HOME/twrp
+before_cache:
+  - rm -rf $HOME/twrp/out
 after_success:
   - export version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d '"' -f2)
   - cp $HOME/twrp/out/target/product/RMX1821/recovery.img $HOME/twrp/TWRP-$version-RMX1821-$(date +"%Y%m%d").img
