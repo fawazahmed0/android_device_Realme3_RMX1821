@@ -7,7 +7,7 @@ before_script:
 - git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed" && git config --global color.ui false
 - mkdir -p $HOME/twrp && cd $HOME/twrp
 - repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-- travis_wait 60 repo sync -q
+- travis_wait 50 repo sync -q
 - git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
 script:
   #Replacing PWD=/proc/self/cwd with empty string, as it is causing build to stop in travis ubuntu
