@@ -2,12 +2,14 @@ dist: bionic
 sudo: required
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y install git repo ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev python openjdk-8-jdk android-tools-adb
+  - sudo apt-get -y install git ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev python openjdk-8-jdk android-tools-adb
 before_script:
+- curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+- chmod a+x ~/bin/repo
 - git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed" && git config --global color.ui false
 - mkdir -p $HOME/twrp && cd $HOME/twrp
-- repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-- travis_wait 50 repo sync -q
+- ~/bin/repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+- travis_wait 50 ~/bin/repo sync -q
 - git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
 script:
   #Replacing PWD=/proc/self/cwd with empty string, as it is causing build to stop in travis ubuntu
