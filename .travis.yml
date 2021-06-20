@@ -23,8 +23,8 @@ after_success:
 deploy:
   skip_cleanup: true
   provider: releases
-  github_token: "$GH_TOKEN"
-  api_key: "$GH_TOKEN"
+  github_token: "$GITHUB_TOKEN"
+  api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: $HOME/twrp/*.img
   on:
