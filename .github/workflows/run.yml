@@ -12,8 +12,7 @@ jobs:
       - name: Remove junk
         shell: bash
         run: |
-          sudo rm -rf /usr/lib/google-cloud-sdk /usr/local/share/chromium /usr/local/share/powershell /usr/share/swift /usr/share/dotnet /opt/hostedtoolcache/CodeQL /opt/hostedtoolcache/go
-
+          sudo rm -rf /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup /usr/local/share/powershell /usr/lib/google-cloud-sdk /usr/share/swift /usr/share/dotnet /opt/hostedtoolcache/CodeQL /opt/hostedtoolcache/go /opt/hostedtoolcache/Python /opt/hostedtoolcache/PyPy /opt/microsoft/msedge /opt/az/lib/python3.10 /var/lib/docker
 
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
