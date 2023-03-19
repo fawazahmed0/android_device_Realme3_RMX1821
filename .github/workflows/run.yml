@@ -18,8 +18,8 @@ jobs:
           #chmod a+x ~/bin/repo
           git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed" && git config --global color.ui false
           mkdir -p $HOME/twrp && cd $HOME/twrp
-          ~/bin/repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-          ~/bin/repo sync -q
+          repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+          repo sync -q
           git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
           cd $HOME/twrp && export ALLOW_MISSING_DEPENDENCIES=true && source ./build/envsetup.sh && lunch RMX1821-eng
           mka recoveryimage
