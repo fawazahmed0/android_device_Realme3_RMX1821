@@ -11,10 +11,11 @@ jobs:
       - name: Install filter-repo and jsdelivr caching script
         shell: bash
         run: |
-          #sudo apt-get update
+          sudo apt-get update
+          sudo apt-get -y install repo
           #sudo apt-get -y install git ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib libssl-dev openjdk-8-jdk android-tools-adb
-          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-          chmod a+x ~/bin/repo
+          #curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          #chmod a+x ~/bin/repo
           git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed" && git config --global color.ui false
           mkdir -p $HOME/twrp && cd $HOME/twrp
           ~/bin/repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
