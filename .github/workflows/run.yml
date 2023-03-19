@@ -14,6 +14,7 @@ jobs:
         with:
           remove-dotnet: 'true'
           remove-haskell: 'true'
+          remove-android: 'true'
     
       - name: Install filter-repo and jsdelivr caching script
         shell: bash
