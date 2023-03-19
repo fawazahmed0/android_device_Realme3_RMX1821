@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  my-job:
+    name: Build TWRP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install filter-repo and jsdelivr caching script
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install git ccache git-core automake lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libc6-dev linux-libc-dev gcc-multilib g++-5-multilib libssl-dev python openjdk-8-jdk android-tools-adb
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          git config --global user.email "fawazahmed0@hotmail.com" && git config --global user.name "Fawaz Ahmed" && git config --global color.ui false
+          mkdir -p $HOME/twrp && cd $HOME/twrp
+          ~/bin/repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+          ~/bin/repo sync -q
+          git clone https://github.com/fawazahmed0/android_device_Realme3_RMX1821.git $HOME/twrp/device/Realme/RMX1821
+          cd $HOME/twrp && export ALLOW_MISSING_DEPENDENCIES=true && source ./build/envsetup.sh && lunch RMX1821-eng
+          mka recoveryimage
+          cat bootable/recovery/variables.h
+
+      - name: upload twrp artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: twrp-release
+          path: $HOME/twrp/out/target/product/RMX1821/recovery.img
